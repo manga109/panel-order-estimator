@@ -17,7 +17,14 @@ pip install manga109api
 Also, place the [Manga109 dataset](https://www.manga109.org/) somewhere in your local environment.
 
 
-## Usage (main.py)
+## Usage
+There are two scripts:
+
+- `main.py`: Visualizes the panel orders of a given page of a given title using matplotlib
+- `main-all.py`: A minimal example for enumerating all of the panel orders for all of the pages in the entire dataset
+
+
+### `main.py`
 Basic usage:
 
 ```bash
@@ -47,7 +54,7 @@ The `--threshold` and `--initial-cut` options are explained in the "Explanation"
 This command yields the image shown at the top of this page.
 
 
-## Usage (main-all.py)
+### `main-all.py`
 ```bash
 python main-all.py --dataset-root ./dataset/Manga109_released_2021_02_28
 ```

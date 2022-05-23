@@ -3,12 +3,12 @@ from manga109utils import Manga109Dataset
 
 import order_estimator
 
+four_panel_list = ["YouchienBoueigumi", "Akuhamu"]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--threshold", type=float, default=0.25)
     parser.add_argument("--dataset-root", type=str, default="./dataset/Manga109_released_2021_02_28")
-    parser.add_argument("--initial-cut", type=str, default="two-page", help="two-page-four-panel / two-page / one-page")
 
     args = parser.parse_args()
 
@@ -18,6 +18,11 @@ if __name__ == "__main__":
 
     for book in dataset.get_book_iter():
         print(book.title)
+        if book.title in four_panel_list:
+            initial_cut_option = "two-page-four-panel"
+        else:
+            initial_cut_option = "two-page"
+
         for i_page, page in enumerate(book.get_page_iter()):
             print(f"Page {i_page}:")
             image = page.get_image()
@@ -27,7 +32,7 @@ if __name__ == "__main__":
             boxOrderEstimator = order_estimator.BoxOrderEstimator(
                 panels,
                 pagewidth=pagewidth,
-                initial_cut_option=args.initial_cut)
+                initial_cut_option=initial_cut_option)
 
             for i_panel, panel in enumerate(boxOrderEstimator.ordered_bbs):
                 if len(panel.panels) == 1:
