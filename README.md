@@ -51,11 +51,11 @@ The algorithm consists of the tree construction phase and the tree interpretatio
 
 Tree construction phase:
 
-- 1. If the current set of panels is separable into two parts with a horizonal line (the pivot),
-  - Separate the set, and for each set, start from Step 1
-- 2. Otherwise, if the current set of panels is separable into two parts with a vertical line (the pivot),
-  - Separate the set, and for each set, start from Step 1
-- 3. Otherwise, mark the set as inseparable
+1. If the current set of panels is separable into two parts with a horizonal line (the pivot),
+    - Separate the set, and for each set, start from Step 1
+2. Otherwise, if the current set of panels is separable into two parts with a vertical line (the pivot),
+    - Separate the set, and for each set, start from Step 1
+3. Otherwise, mark the set as inseparable
 
 Tree interpretation phase:
 
@@ -70,10 +70,10 @@ The recursive tree structure used here is accessible using `BoxOrderEstimator.bo
 ### Panel Separation Threshold Details
 Panel separation is done as follows:
 
-- 1. Choose a horizontal/vertical division pivot.
-- 2. For each panel, determine if the panel is separable with the pivot.
-  - If there is any panel that is inseparable with the pivot, mark the pivot as invalid.
-  - If all of the panels are separable with the pivot, return the sets of panels separated with the pivot.
+1. Choose a horizontal/vertical division pivot.
+2. For each panel, determine if the panel is separable with the pivot.
+    - If there is any panel that is inseparable with the pivot, mark the pivot as invalid.
+    - If all of the panels are separable with the pivot, return the sets of panels separated with the pivot.
 
 Whether a panel is separable with a pivot is determined as follows:
 
