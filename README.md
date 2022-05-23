@@ -12,7 +12,7 @@ First install the package requirements:
 pip install manga109api
 ```
 
-Also, place the [Manga109 dataset](https://www.manga109.org/) somewhere on your local environment.
+Also, place the [Manga109 dataset](https://www.manga109.org/) somewhere in your local environment.
 
 
 ## Usage
@@ -54,7 +54,7 @@ Tree construction phase:
 1. If the current set of panels is separable into two parts with a horizonal line (the pivot),
     - Separate the set, and for each set, start from Step 1
 2. Otherwise, if the current set of panels is separable into two parts with a vertical line (the pivot),
-    - Separate the set, and for each set, start from Step 1
+    - Separate the set, and for each set, start from Step 1 (not 2)
 3. Otherwise, mark the set as inseparable
 
 Tree interpretation phase:
@@ -62,6 +62,7 @@ Tree interpretation phase:
 - For horizontal divisions, order the sets with a top-to-bottom order.
 - For vertical divisions, order the sets with a right-to-left order.
 
+The tree construction phase recursively divides the set of panels to create a tree structure, which is later used to determine the panel orders.
 For each horizontal and vertical division in the tree construction phase, a node representing the division is created.
 The inseparable sets in Step 3 become the leaf nodes of this tree, and are either individual panels or a set of overlapping panels.
 The recursive tree structure used here is accessible using `BoxOrderEstimator.boxnode.bbset`.
@@ -102,7 +103,7 @@ Therefore, it should be sufficient to only occasionally use `two-page-four-panel
 
 
 ## Overlapping Panels
-When a set of inseparable panels remain in the leaf node, the set as a whole is given a single order, and are shown in dotted-line bounding boxes:
+When a set of inseparable panels remains in the leaf node, the set as a whole is given a single order, and are shown in dotted-line bounding boxes:
 
 ![Example estimation result for overlapping panels.](./res/overlapping.png)
 
