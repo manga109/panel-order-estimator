@@ -29,10 +29,10 @@ For four-panel comics, the `--initial-cut two-page-four-panel` option must be sp
 python main.py --title YouchienBoueigumi --page 10 --initial-cut two-page-four-panel
 ```
 
-Advanced options are also available:
+All of the available options are as follows:
 
 ```bash
-python main.py --title ARMS --page 10 \
+python main.py --title YouchienBoueigumi --page 10 \
     --dataset-root ./dataset/Manga109_released_2021_02_28 \
     --threshold 0.25 \
     --initial-cut two-page-four-panel
@@ -97,6 +97,14 @@ The `--initial-cut` option is used to handle such cases. This option can take th
 By default, `--initial-cut` is set to `two-page`, which is the case for most of the comics in the Manga109 dataset.
 The `one-page` option is intended for spreaded pages, but even for such pages, the default `two-page` option works for most cases.
 Therefore, it should be sufficient to only occasionally use `two-page-four-panel` for four-panel comic data for this option.
+
+
+## Overlapping Panels
+When a set of inseparable panels remain in the leaf node, the set as a whole is given a single order, and are shown in dotted-line bounding boxes:
+
+![Example estimation result for overlapping panels.](./res/overlapping.png)
+
+The list of panels for such overlapping panels are stored in the field `BoundingBox.panels` defined in `order_estimator.py`.
 
 
 ## Special Options for Four-Panel Comics

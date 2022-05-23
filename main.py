@@ -7,8 +7,7 @@ from manga109utils import Book
 import order_estimator
 
 
-def show_panel(panel, labeltext, edgecolor="red"):
-    linestyle = "solid"
+def show_panel(panel, labeltext, linestyle="solid", edgecolor="red"):
     fontsize = 40
     plt.axes().add_patch(
         patches.Rectangle(xy=(panel.xmin, panel.ymin),
@@ -24,7 +23,7 @@ def show_panel(panel, labeltext, edgecolor="red"):
                 g_sub_bb_y + fontsize / 2,
                 labeltext,
                 fontsize=fontsize,
-                color="red")
+                color=edgecolor)
 
 
 if __name__ == "__main__":
@@ -64,11 +63,11 @@ if __name__ == "__main__":
 
         for i_panel, panel in enumerate(boxOrderEstimator.ordered_bbs):
             order = i_panel + 1
-            if panel.id is not None:
+            if len(panel.panels) == 1:
                 show_panel(panel, labeltext=f"{order}", edgecolor="red")
             else:
                 for subpanel in panel.panels:
-                    show_panel(subpanel, edgecolor="orange", labeltext="?")
+                    show_panel(subpanel, edgecolor="orange", linestyle="dotted", labeltext=f"({order})")
         plt.show()
 
         break
