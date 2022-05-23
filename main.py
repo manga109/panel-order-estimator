@@ -38,8 +38,6 @@ if __name__ == "__main__":
 
     order_estimator.interception_ratio_threshold = args.threshold
 
-    # dataset = Manga109Dataset(manga109_root_dir=args.dataset_root)
-
     book = Book(args.title, manga109_root_dir=args.dataset_root)
     for i_page, page in enumerate(book.get_page_iter()):
         if i_page != args.page:
