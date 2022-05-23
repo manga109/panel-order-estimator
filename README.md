@@ -3,6 +3,8 @@ This tool uses the method described by Kovanen et al. [1] to estimate the order 
 
 ![Example estimation result.](./res/two-page.png)
 
+(Comic: ARMS, by Masaki Kato)
+
 
 ## Setup
 First install the package requirements:
@@ -10,7 +12,7 @@ First install the package requirements:
 pip install manga109api
 ```
 
-Also, place the Manga109 dataset somewhere on your local environment.
+Also, place the [Manga109 dataset](https://www.manga109.org/) somewhere on your local environment.
 
 
 ## Usage
@@ -104,6 +106,8 @@ When a set of inseparable panels remain in the leaf node, the set as a whole is 
 
 ![Example estimation result for overlapping panels.](./res/overlapping.png)
 
+(Comic: Prism Heart, by Mai Asatsuki)
+
 The list of panels for such overlapping panels are stored in the field `BoundingBox.panels` defined in `order_estimator.py`.
 
 
@@ -118,7 +122,9 @@ python main.py --title YouchienBoueigumi --page 10 --initial-cut two-page-four-p
 
 ![Example estimation result for four-panel comics.](./res/two-page-four-panel.png)
 
-Notice that due to the design of the pivot separation algorithm, the left half of the page is successfully ordered as a usual comic even with the `two-page-four-panel` option. On the other hand, the right half of the page is successfully separated as a four-panel comic page.
+(Comic: Youchien Boueigumi, by Tenya)
+
+Notice that due to the design of the pivot separation algorithm, the left half of the page is successfully ordered as a usual non-four-panel comic even with the `two-page-four-panel` option. On the other hand, the right half of the page is successfully separated as a four-panel comic page. (Without this option, the panels on the right half would be ordered as 1, 5, 2, 6, and so on.)
 
 
 ## References
@@ -134,4 +140,33 @@ Paper [1]:
   number={},
   pages={4283-4287},
   doi={10.1109/ICIP.2015.7351614}}
+```
+
+
+The following papers are related to the Manga109 dataset.
+
+When publishing results that depend on the Manga109 dataset, please cite the following papers:
+
+```
+@article{mtap_matsui_2017,
+    author={Yusuke Matsui and Kota Ito and Yuji Aramaki and Azuma Fujimoto and Toru Ogawa and Toshihiko Yamasaki and Kiyoharu Aizawa},
+    title={Sketch-based Manga Retrieval using Manga109 Dataset},
+    journal={Multimedia Tools and Applications},
+    volume={76},
+    number={20},
+    pages={21811--21838},
+    doi={10.1007/s11042-016-4020-z},
+    year={2017}
+}
+
+@article{multimedia_aizawa_2020,
+    author={Kiyoharu Aizawa and Azuma Fujimoto and Atsushi Otsubo and Toru Ogawa and Yusuke Matsui and Koki Tsubota and Hikaru Ikuta},
+    title={Building a Manga Dataset ``Manga109'' with Annotations for Multimedia Applications},
+    journal={IEEE MultiMedia},
+    volume={27},
+    number={2},
+    pages={8--18},
+    doi={10.1109/mmul.2020.2987895},
+    year={2020}
+}
 ```
