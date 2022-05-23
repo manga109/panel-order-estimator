@@ -28,7 +28,8 @@ There are two scripts:
 Basic usage:
 
 ```bash
-python main.py --title ARMS --page 10
+python main.py --title ARMS --page 10 \
+    --dataset-root ./dataset/Manga109_released_2021_02_28
 ```
 
 This command yields the image shown at the top of this page.
@@ -37,7 +38,8 @@ This command yields the image shown at the top of this page.
 For four-panel comics, the `--initial-cut two-page-four-panel` option must be specified:
 
 ```bash
-python main.py --title YouchienBoueigumi --page 10 --initial-cut two-page-four-panel
+python main.py --title YouchienBoueigumi --page 10 --initial-cut two-page-four-panel \
+    --dataset-root ./dataset/Manga109_released_2021_02_28
 ```
 
 All of the available options are as follows:
@@ -74,8 +76,11 @@ Tree construction phase:
 
 Tree interpretation phase:
 
-- For horizontal divisions, order the sets with a top-to-bottom order.
-- For vertical divisions, order the sets with a right-to-left order.
+- Traverse the horizontal/vertical division tree, providing the panel orders on the way as follows:
+  - For horizontal divisions, visit the top branch first, and then the bottom branch
+  - For vertical divisions, visit the right branch first, and then the left branch
+  - When a leaf node is encountered, provide the newest order index to that node
+    - A leaf node may either be an individual panel or a set of panels inseparable with a pivot (under the given threshold)
 
 The tree construction phase recursively divides the set of panels to create a tree structure, which is later used to determine the panel orders.
 For each horizontal and vertical division in the tree construction phase, a node representing the division is created.
@@ -102,14 +107,16 @@ The `--threshold` option specifies the ratio threshold used in this step.
 
 
 ### Initial cuts
-The algorithm above does not generally work for side-by-side pages (which are most of the pages in the Manga109 dataset), since side-by-side pages are actually two individual pages concatenated to one page. For such pages, the algorithm must initially try to divide the page with a vertical pivot that crosses the center of the page image to separate the left and right pages.
+The algorithm above does not generally work for side-by-side pages (which are most of the pages in the Manga109 dataset), since side-by-side pages are actually two individual pages concatenated to one page. For such pages, each page must be managed separately, or else the algorithm will mix up the rows of each page as one single row.
 
-Similarly, four-panel comics such as Youchien Boueigumi (by Tenya) in the Manga109 dataset is actually _four_ different pages concatenated to one page. For such pages, the algorithm must initially try three pivots (which divides the page into four parts).
+To initially separate the page into two sets, there is an option to initially provide a vertical pivot that crosses the center of the page image so that it separates the left and right pages. This manual vertical pivot is required since the algorithm first looks for horizontal divisions before looking for vertical ones.
+
+Similarly, four-panel comics such as Youchien Boueigumi (by Tenya) in the Manga109 dataset is actually _four_ different pages concatenated to one page. For such pages, the algorithm must initially try three vertical pivots (which divides the page into four parts).
 
 The `--initial-cut` option is used to handle such cases. This option can take the following choices:
 
-- `one-page` (or `None`) - No initial pivots are used
-- `two-page` - One initial vertical pivot along the center is used
+- `one-page` - No initial pivots are used
+- `two-page` (default) - One initial vertical pivot along the center is used
 - `two-page-four-panel` - For four-panel comics; three initial vertical pivots are used
 
 By default, `--initial-cut` is set to `two-page`, which is the case for most of the comics in the Manga109 dataset.
