@@ -15,11 +15,22 @@ Also, place the Manga109 dataset somewhere on your local environment.
 
 ## Usage
 Basic usage:
+
 ```bash
 python main.py --title ARMS --page 10
 ```
 
-Advanced usage:
+This command yields the image shown at the top of this page.
+
+
+For four-panel comics, the `--initial-cut two-page-four-panel` option must be specified:
+
+```bash
+python main.py --title YouchienBoueigumi --page 10 --initial-cut two-page-four-panel
+```
+
+Advanced options are also available:
+
 ```bash
 python main.py --title ARMS --page 10 \
     --dataset-root ./dataset/Manga109_released_2021_02_28 \
@@ -88,23 +99,17 @@ The `one-page` option is intended for spreaded pages, but even for such pages, t
 Therefore, it should be sufficient to only occasionally use `two-page-four-panel` for four-panel comic data for this option.
 
 
-## Initial Cut Examples
+## Special Options for Four-Panel Comics
+Here is an estimation result for four-panel comics:
 
 ```bash
-python main.py --title ARMS --page 10 --dataset-root ./dataset/Manga109_released_2021_02_28
+python main.py --title YouchienBoueigumi --page 10 --initial-cut two-page-four-panel
 ```
 
-For four-panel manga:
+![Example estimation result for four-panel comics.](./res/two-page-four-panel.png)
 
-```bash
-python main.py --title YouchienBoueigumi --page 10 --dataset-root ./dataset/Manga109_released_2021_02_28 --initial-cut two-page-four-panel
-```
+Notice that due to the design of the pivot separation algorithm, the left half of the page is successfully ordered as a usual comic even with the `two-page-four-panel` option. On the other hand, the right half of the page is successfully separated as a four-panel comic page.
 
-For center-spreaded pages:
-
-```bash
-python main.py --title Saisoku --page 50 --dataset-root ~/dataset/Manga109_released_2021_02_28 --initial-cut one-page
-```
 
 ## References
 Paper [1]:
