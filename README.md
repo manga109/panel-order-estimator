@@ -5,6 +5,8 @@ This tool uses the method described by Kovanen et al. [1] to estimate the order 
 
 (Comic: ARMS, by Masaki Kato)
 
+Another simple tool that finds the order of all of the bounding boxes for the pages in the entire dataset is available as `main-all.py`.
+
 
 ## Setup
 First install the package requirements:
@@ -15,7 +17,7 @@ pip install manga109api
 Also, place the [Manga109 dataset](https://www.manga109.org/) somewhere in your local environment.
 
 
-## Usage
+## Usage (main.py)
 Basic usage:
 
 ```bash
@@ -43,6 +45,12 @@ python main.py --title YouchienBoueigumi --page 10 \
 The `--threshold` and `--initial-cut` options are explained in the "Explanation" section.
 
 This command yields the image shown at the top of this page.
+
+
+## Usage (main-all.py)
+```bash
+python main-all.py --dataset-root ./dataset/Manga109_released_2021_02_28
+```
 
 
 ## Explanation
