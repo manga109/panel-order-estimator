@@ -121,7 +121,7 @@ The `--initial-cut` option is used to handle such cases. This option can take th
 
 By default, `--initial-cut` is set to `two-page`, which is the case for most of the comics in the Manga109 dataset.
 The `one-page` option is intended for spreaded pages, but even for such pages, the default `two-page` option works for most cases.
-Therefore, it should be sufficient to only occasionally use `two-page-four-panel` for four-panel comic data for this option.
+Therefore, it should be sufficient to only occasionally use `two-page-four-panel` for four-panel comic data as for this option.
 
 
 ## Overlapping Panels
