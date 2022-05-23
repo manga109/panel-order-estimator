@@ -108,6 +108,8 @@ The list of panels for such overlapping panels are stored in the field `Bounding
 
 
 ## Special Options for Four-Panel Comics
+As mentioned in the Usage section, four-panel comics require a special option.
+
 Here is an estimation result for four-panel comics:
 
 ```bash
