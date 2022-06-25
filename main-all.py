@@ -40,4 +40,4 @@ if __name__ == "__main__":
                 else:
                     print(f"{i_panel:2d} Subpanels of {panel}:")
                     for subpanel in panel.panels:
-                        print(f"    - {panel}")
+                        print(f"    - {subpanel}")
