@@ -1,20 +1,30 @@
 # Comic Panel Order Estimator
 This tool uses the method described by Kovanen et al. [1] to estimate the order of comic panels as follows:
 
+- Given a set of panel bounding boxes within a double-sided comic page, it estimates the order of the panels based on [1]. Available as `main.py`.
+- Finds the order of all of the bounding boxes for the pages in the dataset. Available as `main-all.py`.
+
+This tool does not do the following:
+
+- Panel bounding box detection. This must be done separately or be provided manually.
+
+Here is an example of the panel detection result:
+
 ![Example estimation result.](./res/two-page.png)
 
 (Comic: ARMS, by Masaki Kato)
 
-Another simple tool that finds the order of all of the bounding boxes for the pages in the entire dataset is available as `main-all.py`.
-
 
 ## Setup
-First install the package requirements:
+First install the Python package requirements:
 ```bash
 pip install manga109api
 ```
 
 Also, place the [Manga109 dataset](https://www.manga109.org/) somewhere in your local environment.
+
+This tool expects the dataset structure to follow the format for [Manga109 dataset](https://www.manga109.org/).
+Custom datasets can be used with this tool by editing the Manga109 dataset or organizing your own dataset in the Manga109 format.
 
 
 ## Usage
